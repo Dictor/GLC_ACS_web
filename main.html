@@ -103,13 +103,13 @@
 
 	<script>
 				function setcontent(kind){
-					if(kind = 'daily_out_submit'){
+					if(kind == 'daily_out_submit'){
 						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./daily_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
-					}else if(kind = 'overnight_out_submit'){
+					}else if(kind == 'overnight_out_submit'){
 						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./overnight_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
-					}else if(kind = 'daily_out_check'){
+					}else if(kind == 'daily_out_check'){
 						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./daily_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
-					}else if(kind = 'overnight_out_check'){
+					}else if(kind == 'overnight_out_check'){
 						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./overnight_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
 					}					
 				}

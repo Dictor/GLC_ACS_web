@@ -73,10 +73,10 @@
 				var stuname = document.getElementById('name').value;
 				var outplace = document.getElementById('place').value;
 				var outreason = document.getElementById('reason').value;
-				var outtime = document.getElementById('time').value;
+				var outday = document.getElementById('ctime').value;
 				var intime = document.getElementById('intime').value;
 				var stunum = document.getElementById('num').value;
-				var submitstring = "outsubmit," + encodeURIComponent(stunum) + "," + encodeURIComponent(stuname) + "," + encodeURIComponent(outplace) + "," + encodeURIComponent(outreason) + "," + encodeURIComponent(outtime) + "," + encodeURIComponent(intime);
+				var submitstring = "doutsubmit," + encodeURIComponent(stunum) + "," + encodeURIComponent(stuname) + "," + encodeURIComponent(outplace) + "," + encodeURIComponent(outreason) + "," + encodeURIComponent(outday) + "," + encodeURIComponent(intime);
 				websocket.send(submitstring);
 			}
 					
@@ -94,11 +94,13 @@
 					
 			function onClose(evt) { 
 				fprint("서버와 연결이 끊겼습니다. 아래 버튼을 눌러 재접속 해주세요. <br> 저장하지 않은 정보는 모두 소실됩니다.<br>"); 
-				fprint("<input type='button' value='재접속' onclick='location.href=location.href;'>")
+				fprint("<input type='button' value='재접속' onclick='location.href=location.href;'><br>")
 			}
 					
 			function onMessage(evt) {
-				if (evt.data = "dummy_checkconn"){
+				if (evt.data == "dummy_checkconn"){
+				}else if (evt.data == "submit_OK"){
+					fprint('외출 신청이 완료되었습니다. <br>');
 				}else{
 					fprint('데이터 수신: ' + evt.data + '<br>');
 				}				
