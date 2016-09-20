@@ -67,7 +67,7 @@
 				var outtime = document.getElementById('time').value;
 				var intime = document.getElementById('intime').value;
 				var stunum = document.getElementById('num').value;
-				var submitstring = "outsubmit," + "," + stunum + "," + stuname + "," + outplace + "," + outreason + "," + outtime + "," + intime;
+				var submitstring = "outsubmit," + encodeURIComponent(stunum) + "," + encodeURIComponent(stuname) + "," + encodeURIComponent(outplace) + "," + encodeURIComponent(outreason) + "," + encodeURIComponent(outtime) + "," + encodeURIComponent(intime);
 				websocket.send(submitstring);
 			}
 					
