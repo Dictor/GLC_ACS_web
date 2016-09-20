@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+			<script src="https://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-		<script src="https://code.jquery.com/jquery.min.js"></script>
 		<script type="text/javascript" src="./js/calendar.js"></script>
 		<title>GLC 외출 신청 페이지</title>
 	</head>
@@ -57,6 +57,7 @@
 		<br><br>
 		
 		<div id='logdiv'>
+		
 		</div>
 		
 		<script>
@@ -80,9 +81,11 @@
 				websocket.send(submitstring);
 			}
 					
-			var wsUrl = 'ws://localhost:81';
-			fprint('서버와 연결을 시도합니다.<br>');
-			var websocket = new WebSocket(wsUrl);
+			try{
+				var wsUrl = 'ws://localhost:81';
+				fprint('서버와 연결을 시도합니다.<br>');
+				var websocket = new WebSocket(wsUrl);
+			}catch(e){}
 			websocket.onopen = function (evt) { onOpen(evt) };
 			websocket.onclose = function (evt) { onClose(evt) };
 			websocket.onmessage = function (evt) { onMessage(evt) };
@@ -109,6 +112,7 @@
 			function onError(evt) {
 				fprint('오류발생: ' + evt.data + '<br>');
 			}
+			
 		</script>
 	</body>
 </html>

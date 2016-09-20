@@ -1,11 +1,10 @@
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>GLC ACS</title>
 
 	<link type="text/css" href="./css/style.css" rel="stylesheet" />
-
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){  
 		  
@@ -18,6 +17,19 @@
 			});  
 		  
 		});  
+
+				
+				
+				function setiframesize(){
+					$('#cont').load(function() {
+					$(this).height($(this).contents().find('body')[0].scrollHeight+30);
+					});
+					$('#content').load(function() {
+					$('#content').height($('#cont').contents().find('body')[0].scrollHeight+30);
+					});
+				}
+				
+
 	</script>
 </head>
 
@@ -82,7 +94,6 @@
 								<li>Sub Nav</li>  
 							</ul>  
 						</li> 
-
 						<li class="navi_set">  
 							<div class="topnav">기타</div>
 							<ul class="subnav">  
@@ -98,20 +109,20 @@
 		</div>
 	</div> 
 
-	<div id='content'; height=auto; style='margin-left: auto; margin-right: auto;'>
+	<div id='content'; style='margin-left: auto; margin-right: auto;'>
 	</div> 
-
 	<script>
-				function setcontent(kind){
+					function setcontent(kind){
 					if(kind == 'daily_out_submit'){
-						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./daily_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; src='./daily_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
 					}else if(kind == 'overnight_out_submit'){
-						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./overnight_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=400px; src='./overnight_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
 					}else if(kind == 'daily_out_check'){
-						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./daily_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=400px; src='./daily_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
 					}else if(kind == 'overnight_out_check'){
-						document.getElementById('content').innerHTML = "<iframe width=99%; height=400px; src='./overnight_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
-					}					
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=400px; src='./overnight_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
+					}	
+					setInterval(setiframesize(),500);
 				}
 	</script>
 </body>
