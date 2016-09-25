@@ -7,15 +7,36 @@
 		<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-		<title>GLC 외출 확인 페이지</title>
+		<title>GLC 외출 승인 페이지</title>
+		
+		<script>
+			function getGETparam(name) { //GET 파라미터 받음 NAME에 파라미터 변수 이름 넣고 호출
+							var rtnval = '';
+							var nowAddress = unescape(location.href);
+							var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+							for(var i = 0 ; i < parameters.length ; i++)
+								{
+									var varName = parameters[i].split('=')[0];
+									if(varName.toUpperCase() == name.toUpperCase())
+										{
+											rtnval = parameters[i].split('=')[1];
+											break;
+										}
+								}
+							//rtnval = new String(rtnval.getBytes("8859_1"),"utf-8");
+							return rtnval;
+						}
+		</script>
 	</head>
 	
 	<body>
-		<h4>GLC 외출 확인 페이지</h4><br>
-		<input type='button' value='새로고침' onclick='location.href=location.href;'>
+		<h4>GLC 외출 승인 페이지</h4><br>
 		
 		<div id="dispdiv">
 		</div>
+		
+		<input type='button' value='신청' onclick='submit();'>
+
 		
 		<br>
 		
@@ -28,6 +49,7 @@
 			var listtx = false;
 			var listcount = 0;
 			var list = [];
+			var id = getGETparam("ID");
 			
 			function fprint(data){
 				log = log + data;
@@ -50,59 +72,25 @@
 					
 			function onOpen(evt) {
 				fprint("서버와 성공적으로 연결되었습니다.<br>");
-				websocket.send("getdoutlist");
+				rprint(id + " 항목의 외출을 승인합니다, 계속 진행하시려면 '신청'버튼을 누르시고 신청하지 않으시려면 이 페이지를 닫아주세요");
+			}
+			
+			function submit() {
+				websocket.send("doutapprA1," + id);
+				fprint("서버에 외출 승인 요청을 보냈습니다.<br>");
 			}
 					
 			function onClose(evt) { 
 				fprint("서버와 연결이 끊겼습니다. 아래 버튼을 눌러 재접속 해주세요. <br> 저장하지 않은 정보는 모두 소실됩니다.<br>"); 
 				fprint("<input type='button' value='재접속' onclick='location.href=location.href;'><br>")
 			}
+						
 					
 			function onMessage(evt) {
-			
 				if (evt.data == "dummy_checkconn"){
-				}else if (evt.data == "doutlst_tx_FINISH"){
-					fprint('외출 목록 수신이 완료되었습니다. (' + listcount + '개) <br>');
-					listtx = false;
-					fprint('외출 목록을 표시합니다. <br>');
-					
-					var i = 0;
-					rprint("<table border='1'><tr><th>학번</th><th>이름</th><th>장소</th><th>사유</th><th>시간</th><th>승인여부</th></tr>");
-					
-					do {
-						var pdata = list[i].split(",");
-						var appr;
-						
-						if(pdata[6] == "A0"){
-							appr = "승인안됨";
-						} else if(pdata[6] == "A1") {
-							appr = "생활관 승인안됨(부모님 승인 완료)";
-						} else if(pdata[6] == "A2") {
-							appr = "승인완료";
-						} else {
-							appr = "알수 없음";
-						}
-						
-						rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>" + appr + "</td></tr>");
-						
-						i++;
-					} while(listcount > i);
-					rprint("</table>");
-					list = [];
-					listcount = 0;
-					
-					fprint('외출을 목록을 모두 표시했습니다. <br>');
-				}else if (evt.data == "doutlst_tx_START"){
-					fprint('외출 목록 수신을 시작합니다. <br>');
-					listtx = true;
-				}else{
-					if (listtx == true){
-						list[listcount] = evt.data;
-						listcount++;
 					}else{
 						fprint('데이터 수신: ' + evt.data + '<br>');
-					}
-				}				
+					}				
 			}
 					
 			function onError(evt) {

@@ -1,84 +1,129 @@
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+		<script src="https://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<script type="text/javascript" src="./js/calendar.js"></script>
+		<title>GLC 외박 신청 페이지</title>
+	</head>
+	<body>
+		<h4>GLC 외박 신청 페이지</h4><br>
+		
+		<div class="input-group">
+			<span class="input-group-addon">학번</span>
+			<input id="num" type="text" class="form-control" placeholder="예: 30101" aria-describedby="basic-addon1">
+		</div>
+			
+		<div class="input-group">
+			<span class="input-group-addon">이름</span>
+			<input id="name" type="text" class="form-control" placeholder="예: 홍길동" aria-describedby="basic-addon1">
+		</div>
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<title>GLC 외박 신청 페이지</title>
-</head>
-<body>
-<h4>GLC 외박 신청 페이지</h4><br>
-	<form name="학년">학년
-			<select name="학년" size="1">
-				<option value="">선택하세요</option>
-				<option value="1학년">1학년</option>
-				<option value="2학년">2학년</option>
-				<option value="3학년">3학년</option>
-			</select>
-		</form>
-	<form name="반">반
-			<select name="반" size="1">
-				<option value="">선택하세요</option>
-				<option value="1반">1반</option>
-				<option value="2반">2반</option>
-				<option value="3반">3반</option>
-				<option value="4반">4반</option>
-				<option value="5반">5반</option>
-				<option value="6반">6반</option>
-				<option value="7반">7반</option>
-				<option value="8반">8반</option>
-				<option value="9반">9반</option>
-			</select>
-		</form>
-	<form name="번호">번호
-			<select name="반" size="1">
-				<option value="">선택하세요</option>
-				<option value="1번">1번</option>
-				<option value="2번">2번</option>
-				<option value="3번">3번</option>
-				<option value="4번">4번</option>
-				<option value="5번">5번</option>
-				<option value="6번">6번</option>
-				<option value="7번">7번</option>
-				<option value="8번">8번</option>
-				<option value="9번">9번</option>
-			</select>
-		</form>
+		<div class="input-group">
+			<span class="input-group-addon">외박장소</span>
+			<input id="place" type="text" class="form-control" placeholder="예: 서울시 용산구 학원" aria-describedby="basic-addon2">
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon">외박사유</span>
+			<input id="reason" type="text" class="form-control" placeholder="예: 친할머니 칠순잔치로 인한 가족행사" aria-describedby="basic-addon3">
+		</div>
+		
+		
+		 
+		<div class="input-group">
+			<span class="input-group-addon">외박날짜</span>
+			<input id="cdate" onclick="fnPopUpCalendar(cdate,cdate,'yyyy-mm-dd')" type="text" class="form-control" readOnly placeholder="이 칸을 클릭해 날짜를 선택하세요">
+		</div>
+		
+		<div class="input-group">
+			<span class="input-group-addon">외박시간</span>
+			<input id="ctime" type="text" class="form-control" placeholder="오후 1시 35분 = 13:35" aria-describedby="basic-addon3">
+		</div>
+		
+		<div class="input-group">
+			<span class="input-group-addon">귀교날짜</span>
+			<input id="indate" onclick="fnPopUpCalendar(cdate,cdate,'yyyy-mm-dd')" type="text" class="form-control" readOnly placeholder="이 칸을 클릭해 날짜를 선택하세요">
+		</div>
+		
+		<div class="btn-group">
+			<form name="귀교시간">귀교시간
+				<select name="귀교시간" size="1" id="intime">
+					<option value="">선택하세요</option>
+					<option value="1타임">1타임</option>
+					<option value="2타임">2타임</option>
+					<option value="3타임">3타임</option>
+					<option value="4타임">4타임</option>
+					<option value="5타임">5타임</option>
+				</select>
+			</form>
+			<input type="submit" value="신청" onclick='submit();'>
+		</div>
+		
 	
-<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">이름</span>
-  <input type="text" class="form-control" placeholder="예: 홍길동" aria-describedby="basic-addon1">
-</div>
-
-<div class="input-group">
-  <span class="input-group-addon" id="basic-addon2">외박장소</span>
-  <input type="text" class="form-control" placeholder="예: 서울시 용산구 학원" aria-describedby="basic-addon2">
-</div>
-<div class="input-group">
-  <span class="input-group-addon" id="basic-addon2">외박사유</span>
-  <input type="text" class="form-control" placeholder="예: 친할머니 칠순잔치로 인한 가족행사" aria-describedby="basic-addon3">
-</div>
-<div class="input-group">
-  <span class="input-group-addon">귀가 날짜 및 시간</span>
-  <input type="text" class="form-control" placeholder="예: 20160911 13:00">
-</div>
-<div class="input-group">
-  <span class="input-group-addon">귀교 날짜</span>
-  <input type="text" class="form-control" placeholder="예: 20160911 13:00">
-</div>
-<div class="btn-group">
-		<form name="귀교시간">귀교시간
-			<select name="귀교시간" size="1">
-				<option value="">선택하세요</option>
-				<option value="1타임">1타임</option>
-				<option value="2타임">2타임</option>
-				<option value="3타임">3타임</option>
-				<option value="4타임">4타임</option>
-				<option value="5타임">5타임</option>
-			</select>
-		</form>
-		<input type="submit" value="신청">
-</div>
-</body>
+		<br><br>
+		
+		<div id='logdiv'>
+		
+		</div>
+		
+		<script>
+			var log = ""
+			
+			function fprint(data){
+				log = log + data;
+				document.getElementById('logdiv').innerHTML = log;
+			}
+					
+					
+			function submit(){
+				fprint("서버에 외박 신청 정보를 전송했습니다.<br>");
+				var stuname = document.getElementById('name').value;
+				var outplace = document.getElementById('place').value;
+				var outreason = document.getElementById('reason').value;
+				var outday = document.getElementById('cdate').value + " " + document.getElementById('ctime').value;
+				var indate = document.getElementById('indate').value;
+				var intime = document.getElementById('intime').value;
+				var stunum = document.getElementById('num').value;
+				var submitstring = "ooutsubmit," + encodeURIComponent(stunum) + "," + encodeURIComponent(stuname) + "," + encodeURIComponent(outplace) + "," + encodeURIComponent(outreason) + "," + encodeURIComponent(outday) + "," + encodeURIComponent(indate)+ "," +encodeURIComponent(intime);
+				websocket.send(submitstring);
+			}
+					
+			try{
+				var wsUrl = 'ws://hamser.kr:81';
+				fprint('서버와 연결을 시도합니다.<br>');
+				var websocket = new WebSocket(wsUrl);
+			}catch(e){}
+			websocket.onopen = function (evt) { onOpen(evt) };
+			websocket.onclose = function (evt) { onClose(evt) };
+			websocket.onmessage = function (evt) { onMessage(evt) };
+			websocket.onerror = function (evt) { onError(evt) };
+					
+			function onOpen(evt) {
+				fprint("서버와 성공적으로 연결되었습니다.<br>");
+			}
+					
+			function onClose(evt) { 
+				fprint("서버와 연결이 끊겼습니다. 아래 버튼을 눌러 재접속 해주세요. <br> 저장하지 않은 정보는 모두 소실됩니다.<br>"); 
+				fprint("<input type='button' value='재접속' onclick='location.href=location.href;'><br>")
+			}
+					
+			function onMessage(evt) {
+				if (evt.data == "dummy_checkconn"){
+				}else if (evt.data == "submit_OK"){
+					fprint('외박 신청이 완료되었습니다. <br>');
+				}else{
+					fprint('데이터 수신: ' + evt.data + '<br>');
+				}				
+			}
+					
+			function onError(evt) {
+				fprint('오류발생: ' + evt.data + '<br>');
+			}
+			
+		</script>
+	</body>
 </html>

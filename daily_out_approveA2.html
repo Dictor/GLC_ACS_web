@@ -61,7 +61,7 @@
 				document.getElementById('dispdiv').innerHTML = record;
 			}
 					
-			var wsUrl = 'ws://localhost:81';
+			var wsUrl = 'ws://hamser.kr:81';
 			fprint('서버와 연결을 시도합니다.<br>');
 			var websocket = new WebSocket(wsUrl);
 			
@@ -76,7 +76,7 @@
 			}
 			
 			function submit() {
-				websocket.send("doutappr," + id);
+				websocket.send("doutapprA2," + id);
 				fprint("서버에 외출 승인 요청을 보냈습니다.<br>");
 			}
 					

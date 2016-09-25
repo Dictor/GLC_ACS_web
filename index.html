@@ -36,7 +36,7 @@
 <body>
 	<div id="wrap">
 		<div id="header">
-			<div id="logo">GLC 외출외박 온라인 페이지</div>
+			<div id="logo">GLC 외출외박 페이지</div>
 				<div class="navi_bg">
 					<div class="nav">  
 
@@ -57,15 +57,6 @@
 						</li> 
 						
 						<li class="navi_set">  
-							<div class="topnav">외출외박 승인</div>
-							<ul class="subnav">  
-								<li></li>  
-								<li><a onclick='setcontent("daily_out_approve");' style="color:white;">외출</a></li>  
-								<li><a onclick='setcontent("overnight_out_approve");' style="color:white;">외박</a></li>
-							</ul>  
-						</li>
-						
-						<li class="navi_set">  
 							<div class="topnav">보건관련사항</div>
 							<ul class="subnav">  
 								<li><a href="./g1_med.html" style="color:white;">1학년</a></li>  
@@ -73,6 +64,16 @@
 								<li><a href="./g3_med.html" style="color:white;">3학년</a></li>    
 							</ul>  
 						</li> 
+
+						<li class="navi_set">  
+							<div class="topnav">기타</div>
+							<ul class="subnav">  
+								<li>Sub Nav</li>  
+								<li>Sub Nav</li> 
+								<li>Sub Nav</li>  
+								<li>Sub Nav</li>  
+							</ul>  
+						</li>
 
 						<li class="navi_set">  
 							<div class="topnav">기타</div>
@@ -120,10 +121,6 @@
 						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; src='./daily_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출 확인</a></iframe>";
 					}else if(kind == 'overnight_out_check'){
 						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=400px; src='./overnight_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
-					}else if(kind == 'daily_out_approve'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; src='./daily_out_approve.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출 확인</a></iframe>";
-					}else if(kind == 'overnight_out_approve'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; src='./overnight_out_approve.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출 확인</a></iframe>";
 					}	
 					setInterval(setiframesize(),1500);
 				}
