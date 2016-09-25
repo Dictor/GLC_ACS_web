@@ -18,25 +18,21 @@
 		  
 		});  
 
-				
-				
-				function setiframesize(){
-					$('#cont').load(function() {
-					$(this).height($(this).contents().find('body')[0].scrollHeight+30);
-					});
-					$('#content').load(function() {
-					$('#content').height($('#cont').contents().find('body')[0].scrollHeight+30);
-					});
-				}
-				
-
 	</script>
+		<script type="text/javascript">
+			function autoResize(i)
+				{
+				    var iframeHeight=
+    				(i).contentWindow.document.body.scrollHeight;
+    				(i).height=iframeHeight+20;
+				}
+		</script>
 </head>
 
 <body>
 	<div id="wrap">
 		<div id="header">
-			<div id="logo">GLC 외출외박 페이지</div>
+			<div id="logo">GLC 외출외박 온라인 페이지</div>
 				<div class="navi_bg">
 					<div class="nav">  
 
@@ -47,51 +43,36 @@
 								<li><a onclick='setcontent("overnight_out_submit");' style="color:white;">외박</a></li>     
 							</ul>  
 						</li>  
-
+						<li class="navi_set">  
+							<div class="topnav">학부모 승인</div>
+							<ul class="subnav">  
+								<li><a onclick='setcontent("all_out_approve");' style="color:white;">전체</a></li>  
+								<li><a onclick='setcontent("daily_out_approve");' style="color:white;">외출</a></li>  
+								<li><a onclick='setcontent("overnight_out_approve");' style="color:white;">외박</a></li>
+							</ul>  
+						</li>
+						<li class="navi_set">  
+							<div class="topnav">생활관 승인</div>
+							<ul class="subnav">  
+								<li><a onclick='setcontent("dor_all_out_approve");' style="color:white;">전체</a></li>  
+								<li><a onclick='setcontent("dor_daily_out_approve");' style="color:white;">외출</a></li>  
+								<li><a onclick='setcontent("dor_overnight_out_approve");' style="color:white;">외박</a></li>
+							</ul>  
+						</li>
 						<li class="navi_set">  
 							<div class="topnav">외출외박 확인</div>
 							<ul class="subnav">  
+								<li><a onclick='setcontent("all_out_check");' style="color:white;">전체</a></li>
 								<li><a onclick='setcontent("daily_out_check");' style="color:white;">외출</a></li>  
 								<li><a onclick='setcontent("overnight_out_check");' style="color:white;">외박</a></li>     
 							</ul>  
 						</li> 
-						
 						<li class="navi_set">  
 							<div class="topnav">보건관련사항</div>
 							<ul class="subnav">  
 								<li><a href="./g1_med.html" style="color:white;">1학년</a></li>  
 								<li><a href="./g2_med.html" style="color:white;">2학년</a></li> 
 								<li><a href="./g3_med.html" style="color:white;">3학년</a></li>    
-							</ul>  
-						</li> 
-
-						<li class="navi_set">  
-							<div class="topnav">기타</div>
-							<ul class="subnav">  
-								<li>Sub Nav</li>  
-								<li>Sub Nav</li> 
-								<li>Sub Nav</li>  
-								<li>Sub Nav</li>  
-							</ul>  
-						</li>
-
-						<li class="navi_set">  
-							<div class="topnav">기타</div>
-							<ul class="subnav">  
-								<li>Sub Nav</li>  
-								<li>Sub Nav</li> 
-								<li>Sub Nav</li>  
-								<li>Sub Nav</li>  
-							</ul>  
-						</li> 
-
-						<li class="navi_set">  
-							<div class="topnav">기타</div>
-							<ul class="subnav">  
-								<li>Sub Nav</li>  
-								<li>Sub Nav</li> 
-								<li>Sub Nav</li>  
-								<li>Sub Nav</li>  
 							</ul>  
 						</li> 
 						<li class="navi_set">  
@@ -114,14 +95,20 @@
 	<script>
 					function setcontent(kind){
 					if(kind == 'daily_out_submit'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; src='./daily_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_submit.html'>외출 신청</a></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_submit.html'; align=middle; scrolling=no;></iframe>";
 					}else if(kind == 'overnight_out_submit'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=400px; src='./overnight_out_submit.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_submit.html'; align=middle; scrolling=no;></iframe>";
 					}else if(kind == 'daily_out_check'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; src='./daily_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출 확인</a></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_check.html'; align=middle; scrolling=no;></iframe>";
 					}else if(kind == 'overnight_out_check'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=400px; src='./overnight_out_check.html'; align=middle; scrolling=no;><a href='./daily_out_check.html'>외출</a></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_check.html'; align=middle; scrolling=no;></iframe>";
+					}else if(kind == 'daily_out_approve'){
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_approve.html'; align=middle; scrolling=no;></iframe>";
+					}else if(kind == 'overnight_out_approve'){
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_approve.html'; align=middle; scrolling=no;></iframe>";
 					}	
+					}else if(kind == 'dor_overnight_out_approve'){
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./dor_overnight_out_approve.html'; align=middle; scrolling=no;></iframe>";
 					setInterval(setiframesize(),1500);
 				}
 	</script>
