@@ -44,29 +44,13 @@
 							</ul>  
 						</li>  
 						<li class="navi_set">  
-							<div class="topnav">학부모 승인</div>
+							<div class="topnav">외출외박 승인</div>
 							<ul class="subnav">  
 								<li><a onclick='setcontent("all_out_approve");' style="color:white;">전체</a></li>  
-								<li><a onclick='setcontent("daily_out_approve");' style="color:white;">외출</a></li>  
+								<li><a onclick='setcontent("daily_out_approvelist");' style="color:white;">외출</a></li>  
 								<li><a onclick='setcontent("overnight_out_approve");' style="color:white;">외박</a></li>
 							</ul>  
 						</li>
-						<li class="navi_set">  
-							<div class="topnav">생활관 승인</div>
-							<ul class="subnav">  
-								<li><a onclick='setcontent("dor_all_out_approve");' style="color:white;">전체</a></li>  
-								<li><a onclick='setcontent("dor_daily_out_approve");' style="color:white;">외출</a></li>  
-								<li><a onclick='setcontent("dor_overnight_out_approve");' style="color:white;">외박</a></li>
-							</ul>  
-						</li>
-						<li class="navi_set">  
-							<div class="topnav">외출외박 확인</div>
-							<ul class="subnav">  
-								<li><a onclick='setcontent("all_out_check");' style="color:white;">전체</a></li>
-								<li><a onclick='setcontent("daily_out_check");' style="color:white;">외출</a></li>  
-								<li><a onclick='setcontent("overnight_out_check");' style="color:white;">외박</a></li>     
-							</ul>  
-						</li> 
 						<li class="navi_set">  
 							<div class="topnav">보건관련사항</div>
 							<ul class="subnav">  
@@ -90,27 +74,23 @@
 		</div>
 	</div> 
 
-	<div id='content'; style='margin-left: auto; margin-right: auto;'>
+	<div id='content'; style='margin-left: auto; margin-right: auto; color="#dddddd";'>
 	</div> 
 	<script>
 					function setcontent(kind){
 					if(kind == 'daily_out_submit'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_submit.html'; align=middle; scrolling=no;></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_submit.html'; align=middle; scrolling=no; frameborder=0; iframe style='display: block;'></iframe>";
 					}else if(kind == 'overnight_out_submit'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_submit.html'; align=middle; scrolling=no;></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_submit.html'; align=middle; scrolling=no; frameborder=0; iframe style='display: block;'></iframe>";
 					}else if(kind == 'daily_out_check'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_check.html'; align=middle; scrolling=no;></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_check.html'; align=middle; scrolling=no; frameborder=0; iframe style='display: block;'></iframe>";
 					}else if(kind == 'overnight_out_check'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_check.html'; align=middle; scrolling=no;></iframe>";
-					}else if(kind == 'daily_out_approve'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_approve.html'; align=middle; scrolling=no;></iframe>";
-					}else if(kind == 'overnight_out_approve'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_approve.html'; align=middle; scrolling=no;></iframe>";
-					}	
-					}else if(kind == 'dor_overnight_out_approve'){
-						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./dor_overnight_out_approve.html'; align=middle; scrolling=no;></iframe>";
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./overnight_out_check.html'; align=middle; scrolling=no; frameborder=0; iframe style='display: block;'></iframe>";
+					}else if(kind == 'daily_out_approvelist'){
+						document.getElementById('content').innerHTML = "<iframe id='cont' width=99%; height=500px; src='./daily_out_approvelist.html'; align=middle; scrolling=no; frameborder=0; iframe style='display: block;'></iframe>";
 					setInterval(setiframesize(),1500);
-				}
+			}
+			}
 	</script>
 </body>
 </html>

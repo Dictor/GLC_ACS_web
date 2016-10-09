@@ -7,9 +7,10 @@ body, div, ul, li, table, tr, td, th{margin:0px; padding:0px;}
 ul, li{list-style:none;}
 
 body {
-	font-family: NanumGothic, '³ª´®°íµñ', NanumGothicWeb, "Malgun Gothic",Gulim,sans-serif;
-	background: #ddd;
+	font-family: NanumGothic, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', NanumGothicWeb, "Malgun Gothic",Gulim,sans-serif;
+	background: #fff;
 	font-size:10px;
+	opacity:1initial;
 }
 
 #wrap {
@@ -32,14 +33,14 @@ body {
 
 
 
-/*³×ºñ°ÔÀÌ¼Ç »ö»ó*/
+/*ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½*/
 
 .navi_bg{
 	background:#222;
 }
 
 
-/*³×ºñ°ÔÀÌ¼Ç ÀüÃ¼ ¿µ¿ª Á¦¾î*/
+/*ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
 
 .nav {
 	height:35px;
@@ -52,7 +53,7 @@ body {
 }
 
 
-/*ÁÖ¸Þ´º ¿µ¿ª Á¦¾î*/
+/*ï¿½Ö¸Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
 
 .topnav{
 	text-align:center;
@@ -63,14 +64,14 @@ body {
 }
 
 
-/*ÁÖ¸Þ´º ¸¶¿ì½º ¿À¹ö½Ã*/
+/*ï¿½Ö¸Þ´ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½*/
 
 .topnav:hover{
 	color:#d3d3d3;
 }
 
 
-/*ÁÖ¸Þ´º,¼­ºê¸Þ´º ÇÑ¹­À½ Á¦¾î*/
+/*ï¿½Ö¸Þ´ï¿½,ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ ï¿½Ñ¹ï¿½ï¿½ ï¿½ï¿½ï¿½*/
 
 .navi_set{
 	float: left;
@@ -79,7 +80,7 @@ body {
 }
 
 
-/*¼­ºê¸Þ´º ÀüÃ¼¿µ¿ª Á¦¾î*/
+/*ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
 
 .subnav{
 	position: absolute;
@@ -90,7 +91,7 @@ body {
 }
 
 
-/*¼­ºê¸Þ´º ÇÑÄ­ Á¦¾î*/
+/*ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ ï¿½ï¿½Ä­ ï¿½ï¿½ï¿½*/
 
 .subnav li{
 	padding:10px;
@@ -102,7 +103,7 @@ body {
 }
 
 
-/*¼­ºê¸Þ´º ¸¶¿ì½º ¿À¹ö½Ã*/
+/*ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½*/
 
 .subnav li:hover{
 	background:#555;

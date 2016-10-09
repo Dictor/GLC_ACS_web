@@ -14,6 +14,18 @@
 	<body>
 		<h4>GLC 외출 승인 목록 학부모 검색 페이지</h4><br>
 		
+		<div class="input-group">
+			<span class="input-group-addon">학번</span>
+			<input id="num" type="text" class="form-control" placeholder="예: 30101" aria-describedby="basic-addon1">
+		</div>
+			
+		<div class="input-group">
+			<span class="input-group-addon">이름</span>
+			<input id="name" type="text" class="form-control" placeholder="예: 홍길동" aria-describedby="basic-addon1">
+		</div>
+
+		<input type='button' value='검색' onclick='search();'>
+		
 		<div id="dispdiv">
 		</div>
 		
@@ -50,11 +62,10 @@
 					
 			function onOpen(evt) {
 				fprint("서버와 성공적으로 연결되었습니다.<br>");
-				search();
 			}
 			
 			function search() {
-				websocket.send("getdoutapprlst");
+				websocket.send("getdoutapprlstA1," + encodeURIComponent(document.getElementById('num').value) +","+ encodeURIComponent(document.getElementById('name').value));
 			}
 					
 			function onClose(evt) { 
@@ -69,20 +80,6 @@
 				alert("sms 전송 요청 되었습니다");
 			}			
 					
-			function apprA1(id,name){
-				//location.href = "./daily_out_approve.html?ID=" + id;
-				//location.href = id;
-				websocket.send("sendsms," + id + "," +  encodeURIComponent(name));
-				alert("sms 전송 요청 되었습니다");
-			}		
-			
-			function apprA2(id){
-				location.href = "./daily_out_approveA2.html?ID=" + id;
-				//location.href = id;
-				//websocket.send("sendsms," + id);
-				//alert("sms 전송 요청 되었습니다");
-			}
-			
 			function onMessage(evt) {
 				if (evt.data == "dummy_checkconn"){
 				
@@ -92,7 +89,7 @@
 					fprint('외출 목록을 표시합니다. <br>');
 					
 					var i = 0;
-					rprint("<table border='1'><tr><th>학번</th><th>이름</th><th>장소</th><th>사유</th><th>시간</th><th>학부모승인</th><th>생활관승인</th><th>귀교확인</th></tr>");
+					rprint("<table border='1'><tr><th>학번</th><th>이름</th><th>장소</th><th>사유</th><th>시간</th><th>승인여부</th></tr>");
 					
 					do {
 						var pdata = list[i].split(",");
@@ -100,18 +97,15 @@
 						
 						if(pdata[6] == "A0"){
 							appr = "승인안됨";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td><input type='button' value='승인' onclick=apprA1('" + pdata[8] + " , " + pdata[8] + "');></td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
 						} else if(pdata[6] == "A1") {
 							appr = "생활관 승인안됨(부모님 승인 완료)";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
 						} else if(pdata[6] == "A2") {
 							appr = "승인완료";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
 						} else {
 							appr = "알수 없음";
 						}
 						
-						
+						rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>" + appr + "</td></tr>");
 						
 						i++;
 					} while(listcount > i);
@@ -135,18 +129,15 @@
 						
 						if(pdata[6] == "A0"){
 							appr = "승인안됨";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td><input type='button' value='승인' onclick=apprA1('" + pdata[8] + " , " + pdata[8] + "');></td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
 						} else if(pdata[6] == "A1") {
 							appr = "생활관 승인안됨(부모님 승인 완료)";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
 						} else if(pdata[6] == "A2") {
 							appr = "승인완료";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
-						} else {
+						} else {업
 							appr = "알수 없음";
 						}
 						
-						//rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>" + appr + "</td><td><input type='button' value='신청' onclick=appr('" + pdata[7] + "','" + pdata[1] +"');></td></tr>");
+						rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>" + appr + "</td><td><input type='button' value='신청' onclick=appr('" + pdata[7] + "','" + pdata[1] +"');></td></tr>");
 						
 						i++;
 					} while(listcount > i);
