@@ -83,6 +83,13 @@
 				//alert("sms 전송 요청 되었습니다");
 			}
 			
+			function apprA3(id){
+				location.href = "./daily_out_approveA3.html?ID=" + id;
+				//location.href = id;
+				//websocket.send("sendsms," + id);
+				//alert("sms 전송 요청 되었습니다");
+			}
+			
 			function onMessage(evt) {
 				if (evt.data == "dummy_checkconn"){
 				
@@ -100,13 +107,16 @@
 						
 						if(pdata[6] == "A0"){
 							appr = "승인안됨";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td><input type='button' value='승인' onclick=apprA1('" + pdata[8] + " , " + pdata[8] + "');></td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td><input type='button' value='승인' onclick=apprA1('" + pdata[7] + " , " + pdata[1] + "');></td><td><input type='button' value='승인' onclick=apprA2('" + pdata[8] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[8] + "');></td></tr>");
 						} else if(pdata[6] == "A1") {
 							appr = "생활관 승인안됨(부모님 승인 완료)";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td><input type='button' value='승인' onclick=apprA2('" + pdata[8] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[8] + "');></td></tr>");
 						} else if(pdata[6] == "A2") {
 							appr = "승인완료";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[8] + "');></td></tr>");
+						} else if(pdata[6] == "A3") {
+							appr = "승인완료";
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td>귀교(" + pdata[9] + ")</td></tr>");
 						} else {
 							appr = "알수 없음";
 						}
@@ -127,7 +137,7 @@
 					fprint('외출 승인 목록을 표시합니다. <br>');
 					
 					var i = 0;
-					rprint("<table border='1'><tr><th>학번</th><th>이름</th><th>장소</th><th>사유</th><th>시간</th><th>승인여부</th><th>승인신청</th></tr>");
+					rprint("<table border='1'><tr><th>학번</th><th>이름</th><th>장소</th><th>사유</th><th>시간</th><th>학부모 승인</th><th>생활관 승인</th><th>귀교 승인</th></tr>");
 					
 					do {
 						var pdata = list[i].split(",");
@@ -135,13 +145,16 @@
 						
 						if(pdata[6] == "A0"){
 							appr = "승인안됨";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td><input type='button' value='승인' onclick=apprA1('" + pdata[8] + " , " + pdata[8] + "');></td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td><input type='button' value='승인' onclick=apprA1('" + pdata[7] + "','" + pdata[1] + "');></td><td><input type='button' value='승인' disabled='true' onclick=apprA2('" + pdata[8] + "');></td><td><input type='button' value='귀교' disabled='true' onclick=apprA3('" + pdata[8] + "');></td></tr>");
 						} else if(pdata[6] == "A1") {
 							appr = "생활관 승인안됨(부모님 승인 완료)";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td><input type='button' value='승인' onclick=apprA2('" + pdata[7] + "');></td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td><input type='button' value='승인' onclick=apprA2('" + pdata[8] + "');></td><td><input type='button' value='귀교' disabled='true' onclick=apprA3('" + pdata[8] + "');></td></tr>");
 						} else if(pdata[6] == "A2") {
 							appr = "승인완료";
-							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[7] + "');></td></tr>");
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td><input type='button' value='귀교' onclick=apprA3('" + pdata[8] + "');></td></tr>");
+						} else if(pdata[6] == "A3") {
+							appr = "승인완료";
+							rprint("<tr><td>" + pdata[0] + "</td><td>" + pdata[1] + "</td><td>" + pdata[2] + "</td><td>" + pdata[3] + "</td><td>" + pdata[4] + " ~ " + pdata[5] + "타임</td><td>승인완료</td><td>승인완료</td><td>귀교(" + pdata[9] + ")</td></tr>");
 						} else {
 							appr = "알수 없음";
 						}

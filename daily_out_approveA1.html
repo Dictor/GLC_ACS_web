@@ -88,6 +88,10 @@
 					
 			function onMessage(evt) {
 				if (evt.data == "dummy_checkconn"){
+				
+				}else if(evt.data == "doutapprlst_apprA1_OK") {
+					fprint('승인요청이 성공적으로 처리되었습니다.<br>');
+				
 					}else{
 						fprint('데이터 수신: ' + evt.data + '<br>');
 					}				

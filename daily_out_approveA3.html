@@ -72,11 +72,11 @@
 					
 			function onOpen(evt) {
 				fprint("서버와 성공적으로 연결되었습니다.<br>");
-				rprint(id + " 항목의 외출을 승인합니다, 계속 진행하시려면 '신청'버튼을 누르시고 신청하지 않으시려면 이 페이지를 닫아주세요");
+				rprint(id + " 항목의 귀교를 승인합니다, 계속 진행하시려면 '신청'버튼을 누르시고 신청하지 않으시려면 이 페이지를 닫아주세요");
 			}
 			
 			function submit() {
-				websocket.send("doutapprA2," + id);
+				websocket.send("doutapprA3," + id);
 				fprint("서버에 외출 승인 요청을 보냈습니다.<br>");
 			}
 					
@@ -88,7 +88,7 @@
 					
 			function onMessage(evt) {
 				if (evt.data == "dummy_checkconn"){
-				}else if(evt.data == "doutapprlst_apprA2_OK") {
+				}else if(evt.data == "doutapprlst_apprA3_OK") {
 					fprint('승인요청이 성공적으로 처리되었습니다.<br>');
 					}else{
 						fprint('데이터 수신: ' + evt.data + '<br>');
